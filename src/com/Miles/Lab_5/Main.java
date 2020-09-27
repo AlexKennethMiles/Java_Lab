@@ -23,5 +23,7 @@ public class Main {
 
         MovableRectangle wow = new MovableRectangle(0,5,5,0);
         System.out.println(wow.toString());
+        wow.move(10, -10);
+        System.out.println(wow.toString());
     }
 }

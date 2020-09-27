@@ -15,6 +15,10 @@ public class MovableRectangle extends Rectangle{
         rectangle.setLength(x2-x1);
     }
 
+    public void move(double x, double y){
+        topLeft.move(x, y);
+        botRight.move(x, y);
+    }
 
     @Override
     public String toString() {
