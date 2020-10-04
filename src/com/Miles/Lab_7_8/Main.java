@@ -25,9 +25,12 @@ public class Main {
         outputTopSalary(company, 11);
         outputLowSalary(company, 30);
 
+        System.out.println("!!!");
+        System.out.println("Fire Staff list Size");
         for (int i = 0; i < company.getStaffListSize()/2 ; i++) {
             company.fire(i);
         }
+        System.out.println("!!!");
 
         outputTopSalary(company, 15);
         outputLowSalary(company, 30);
@@ -51,7 +54,7 @@ public class Main {
         for (int i = 0; i < num; i++) {
             System.out.printf(tmp.get(i).getPosition().getJobTitle() + "  ");
             System.out.printf("%,d", (int) tmp.get(i).getPosition().calcSalary(tmp.get(i).getBasicSalary()));
-            System.out.println(" руб");
+            System.out.println(" rub");
         }
     }
 }
