@@ -10,11 +10,12 @@ public class Employee {
     private String phoneNumber;
     private double basicSalary;
 
-    public Employee(String firstName, String lastName, LocalDate bday, String address, double basicSalary) {
+    public Employee(String firstName, String lastName, LocalDate bday, String address, String phoneNumber, double basicSalary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bday = bday;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.basicSalary = basicSalary;
     }
 
@@ -74,7 +75,7 @@ public class Employee {
                 ", bday=" + bday +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", basicSalary=" + basicSalary +
+                ", basicSalary=" + (int)basicSalary +
                 '}';
     }
 }
