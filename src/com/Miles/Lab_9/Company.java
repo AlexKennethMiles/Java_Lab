@@ -18,16 +18,14 @@ public class Company {
     }
 
     public void doSmthWithEmployee(EmployeeSelector selector, EmployeeHandler handler){
-        System.out.println("We use the ___Interface___");
         int count = 0;
         for (Employee employee: staffList) {
             if (selector.isNeedEmployee(employee)) {
                 handler.HandleEmployees(employee, count);
                 count++;
-                System.out.println("We find a needed person: " + employee.getFirstName() + " with Birthday: " + employee.getBday());
             }
         }
-        System.out.println("We have " + count + " person in needed Bday range");
+        System.out.println("RESULT: We have " + count + " person in needed Bday range");
     }
 
     @Override

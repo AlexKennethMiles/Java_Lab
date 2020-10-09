@@ -10,8 +10,6 @@ public class BDaySelector implements  EmployeeSelector{
         this.lowerLimit = lowerLimit;
         this.upperLimit = upperLimit;
     }
-
-
     @Override
     public boolean isNeedEmployee(Employee employee) {
         int x = employee.getBday().compareTo(lowerLimit);
