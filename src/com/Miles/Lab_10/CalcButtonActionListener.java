@@ -28,13 +28,37 @@ public class CalcButtonActionListener implements ActionListener {
         final double b = Float.parseFloat(jtxtValue2.getText());
 
         if (btn.getActionCommand().equals("Сложение")) {
-            jtxtResult.setText(String.format("%.4f", a + b));
+            try {
+                jtxtResult.setText(String.format("%.4f", a + b));
+            }
+            catch (Exception ex)
+            {
+                jtxtResult.setText(ex.getMessage());
+            }
         } else if (btn.getActionCommand().equals("Вычитание")) {
+            try {
             jtxtResult.setText(String.format("%.4f",a - b));
+            }
+            catch (Exception ex)
+            {
+                jtxtResult.setText(ex.getMessage());
+            }
         } else if (btn.getActionCommand().equals("Деление")) {
+            try {
             jtxtResult.setText(String.format("%.4f",a / b));
+            }
+            catch (Exception ex)
+            {
+            jtxtResult.setText(ex.getMessage());
+            }
         } else if (btn.getActionCommand().equals("Умножение")) {
+            try {
             jtxtResult.setText(String.format("%.4f",a * b));
+            }
+            catch (Exception ex)
+            {
+            jtxtResult.setText(ex.getMessage());
+            }
         }
     }
 }
