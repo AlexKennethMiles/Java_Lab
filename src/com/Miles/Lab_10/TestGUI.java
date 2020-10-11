@@ -47,6 +47,7 @@ public class TestGUI {
     private void createTextFields() {
         jtxtValue1 = new MyJTextField(10);
         jtxtValue2 = new MyJTextField(10);
+
         jtxtResult = new MyJTextField(15);
         jtxtResult.setEditable(false);
         jtxtResult.setFocusable(false);
