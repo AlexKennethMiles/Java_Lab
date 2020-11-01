@@ -16,7 +16,8 @@ public class Main {
             if (count == 0 || count == 1) {
                 graph.move(count);
             } else if (count != -1) {
-                System.out.println("\u001B[33m" + "Only movement (0/1), no jokes" + "\u001B[0m");
+                System.out.println("\u001B[33m" + "Error! Only available movement (0 or 1).");
+                System.out.println("You are currently in the " + "\u001B[34m" + graph.getCurrentState().getName() + "\u001B[33m" + " state."+ "\u001B[0m");
             }
         }
 

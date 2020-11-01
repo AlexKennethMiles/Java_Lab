@@ -3,11 +3,11 @@ package com.Miles.Lab_15_16;
 import java.util.ArrayList;
 
 public class Graph {
-    Node S1 = new Node();
-    Node S2 = new Node();
-    Node S3 = new Node();
-    Node S4 = new Node();
-    Node S5 = new Node();
+    Node S1 = new Node("S1");
+    Node S2 = new Node("S2");
+    Node S3 = new Node("S3");
+    Node S4 = new Node("S4");
+    Node S5 = new Node("S5");
     Node head = S1; // current state (under the terms)
     private ArrayList<String> result = new ArrayList<>(); // list of resulting instructions
 
@@ -37,5 +37,9 @@ public class Graph {
         for (String res : result) {
             System.out.println(res);
         }
+    }
+
+    public Node getCurrentState(){
+        return head;
     }
 }
