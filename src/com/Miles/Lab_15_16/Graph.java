@@ -11,7 +11,6 @@ public class Graph {
     Node head = S1; // current state (under the terms)
     private ArrayList<String> result = new ArrayList<>(); // list of resulting instructions
 
-
     public Graph() { // create Graph
         S1.setNode(0, "create_project", S2);
         S1.setNode(1, "add_library", S5);
