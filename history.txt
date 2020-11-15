@@ -1,0 +1,7 @@
+2020/11/15 23:37:05 | Server: new user - Admin
+2020/11/15 23:37:13 | Server: new user - Tester 1
+2020/11/15 23:37:20 | Server: new user - Tester 2
+15/11/2020 23:38:45 | Admin: Checking the server operation
+15/11/2020 23:39:03 | Tester 1: I'm in position, over
+15/11/2020 23:39:15 | Tester 2: Connection is stable
+15/11/2020 23:39:30 | Admin: Connection check completed
