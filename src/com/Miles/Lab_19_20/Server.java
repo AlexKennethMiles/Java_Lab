@@ -63,7 +63,7 @@ public class Server {
                     printer.write(data + "\n");
                 } else {
                     String message = new String(buf, 0, packet.getLength());
-                    String date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+                    String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
                     String data = date + " | " + message;
                     System.out.println(data + "\n");
                     for (int i = 0; i < ports.size(); i++) {
