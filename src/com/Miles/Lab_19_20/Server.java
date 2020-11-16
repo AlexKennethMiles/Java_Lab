@@ -40,7 +40,7 @@ public class Server {
                 if (flag == 0) {
                     addresses.add(packet.getAddress());
                     ports.add(packet.getPort());
-                    String welcome = "Server: new user - " + (new String(buf, 0, packet.getLength()));
+                    String welcome = "!!! Welcome " + (new String(buf, 0, packet.getLength())) + " to the server !!!";
                     String date = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new Date());
                     String data = date + " | " + welcome;
                     System.out.println(data + "\n");
