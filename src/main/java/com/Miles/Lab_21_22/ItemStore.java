@@ -5,8 +5,12 @@ import java.util.List;
 
 public interface ItemStore {
     List<Item> getAll() throws IOException, InterruptedException;
+
     Item get(int id) throws IOException, InterruptedException;
+
     Item addItem(Item item) throws IOException, InterruptedException;
+
     Item editItem(Item item, int id) throws IOException, InterruptedException;
+
     void deleteItem(int id) throws IOException, InterruptedException;
 }

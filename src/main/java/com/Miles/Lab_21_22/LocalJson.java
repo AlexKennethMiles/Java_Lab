@@ -2,21 +2,17 @@ package com.Miles.Lab_21_22;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.io.File;
-import java.io.Reader;
 import java.io.Writer;
 
 public class LocalJson implements ItemStore {
@@ -24,7 +20,7 @@ public class LocalJson implements ItemStore {
     private JsonParser parser = new JsonParser();
     private FileReader reader;
     JsonArray jsonArray = new JsonArray();
-    File file = new File("src\\main\\java\\practice2122\\file.json");
+    File file = new File("G:\\IntelliJ IDEA\\MainFolder\\Java_Lab\\src\\main\\java\\com\\Miles\\Lab_21_22file.json");
 
     @Override
     public List<Item> getAll() {
@@ -122,18 +118,19 @@ public class LocalJson implements ItemStore {
         list.sort(new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
-                return (int) Math.signum(o1.getId()-o2.getId());
+                return (int) Math.signum(o1.getId() - o2.getId());
             }
         });
     }
-    public int NewId(Item item){
+
+    public int NewId(Item item) {
         List<Item> array = getAll();
-        int newid=1;
-        ArrayList<Integer> ids=new ArrayList<>();
-        for(Item i:array){
+        int newid = 1;
+        ArrayList<Integer> ids = new ArrayList<>();
+        for (Item i : array) {
             ids.add(i.getId());
         }
-        while(ids.contains(newid))newid++;
+        while (ids.contains(newid)) newid++;
         return newid;
     }
 }
