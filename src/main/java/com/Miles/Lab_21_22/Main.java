@@ -6,17 +6,20 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Scanner sc = new Scanner(System.in);
+        Scanner cin = new Scanner(System.in);
         ItemStore storageType = null;
         int id = 0;
         String data;
         boolean isGood;
         String description;
-        System.out.println("What kind of realization will be used(file or server)?");
-        String input = (sc.nextLine()).toLowerCase();
-        if (input.equals("file")) {
+
+        System.out.println("Choose one of the realization");
+        System.out.println("1 -- Server");
+        System.out.println("2 -- Local file");
+        String input = (cin.nextLine()).toLowerCase();
+        if (input.equals("1")) {
             storageType = new LocalJson();
-        } else if (input.equals("server")) {
+        } else if (input.equals("2")) {
             storageType = new Server();
         }
         System.out.println("Choose one of the command");
@@ -28,7 +31,7 @@ public class Main {
         System.out.println("6 -- Exit");
 
         while (true) {
-            switch (sc.nextLine().toLowerCase()) {
+            switch (cin.nextLine().toLowerCase()) {
                 case "1":
                     List<Item> items = storageType.getAll();
                     for (Item i : items) {
@@ -37,7 +40,7 @@ public class Main {
                     break;
                 case "2":
                     System.out.println("Enter the ID of the item:");
-                    id = sc.nextInt();
+                    id = cin.nextInt();
                     if (storageType.get(id) == null) {
                         System.out.println("There is no aitem with this ID");
                     } else {
@@ -47,33 +50,33 @@ public class Main {
                 case "3":
                     System.out.println("Creating a new item:");
                     System.out.print("ID:");
-                    id = sc.nextInt();
+                    id = cin.nextInt();
                     System.out.print("Data:");
-                    data = sc.nextLine();
+                    data = cin.nextLine();
                     System.out.print("isGood:");
-                    isGood = sc.nextBoolean();
+                    isGood = cin.nextBoolean();
                     System.out.print("description:");
-                    description = sc.nextLine();
+                    description = cin.nextLine();
                     storageType.addItem(new Item(id, data, isGood, description));
                     break;
                 case "4":
                     System.out.println("Creating a buffer item to change an existing one");
                     System.out.print("ID:");
-                    id = sc.nextInt();
+                    id = cin.nextInt();
                     System.out.print("Data:");
-                    data = sc.next();
+                    data = cin.next();
                     System.out.print("isGood:");
-                    isGood = sc.nextBoolean();
+                    isGood = cin.nextBoolean();
                     System.out.print("description:");
-                    description = sc.next();
+                    description = cin.next();
                     Item item = new Item(id, data, isGood, description);
                     System.out.println("ID of the item to change:");
-                    id = sc.nextInt();
+                    id = cin.nextInt();
                     storageType.editItem(item, id);
                     break;
                 case "5":
                     System.out.println("ID of the item to delete:");
-                    storageType.deleteItem(sc.nextInt());
+                    storageType.deleteItem(cin.nextInt());
                     break;
                 case "6":
                     return;
