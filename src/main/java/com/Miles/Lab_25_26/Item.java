@@ -4,6 +4,9 @@ public class Item<K, V> {
     private K key;
     private V value;
 
+    public Item() {
+    }
+
     public Item(K key, V value) {
         this.key = key;
         this.value = value;

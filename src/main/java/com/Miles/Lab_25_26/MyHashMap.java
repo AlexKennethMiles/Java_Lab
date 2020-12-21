@@ -5,11 +5,11 @@ import java.util.Iterator;
 
 public class MyHashMap<K, V> implements HashMapInterface<K, V> {
     private ArrayList<ArrayList<Item<K, V>>> list;
-    private ArrayList<V> realValues = new ArrayList<>();
+    private int MapSize = 127;
 
     public MyHashMap() {
         list = new ArrayList<>();
-        for (int i = 0; i < 127; i++) {
+        for (int i = 0; i < MapSize; i++) {
             list.add(new ArrayList<Item<K, V>>());
         }
     }
@@ -19,46 +19,43 @@ public class MyHashMap<K, V> implements HashMapInterface<K, V> {
         int index = key.hashCode() % list.size();
         if (list.get(index).size() == 0) {
             list.get(index).add(new Item<K, V>(key, value));
-            realValues.add(value);
-        } else if (list.get(index).size() != 0) {
+        } else {
+            boolean flag = false;
             for (int i = 0; i < list.get(index).size(); i++) {
-                Item<K, V> item = list.get(index).get(i);
-                if (key.hashCode() == item.getKey().hashCode()) {
-                    for (int j = 0; j < realValues.size(); j++) {
-                        if (realValues.get(j) == item.getValue()) {
-                            realValues.set(j, value);
-                            break;
-                        }
-                    }
-                    item = new Item<K, V>(key, value);
-                    list.get(index).set(i, item);
-                    break;
-                } else {
-                    list.get(index).add(item);
-                    realValues.add(value);
+                if (list.get(index).get(i).getKey().equals(key)) {
+                    list.get(index).set(i, new Item<>(key, value));
+                    flag = true;
                     break;
                 }
+            }
+            if (!flag) {
+                list.get(index).add(new Item<>(key, value));
             }
         }
     }
 
     @Override
     public V get(K key) {
-        if (getLastItem(key) != null) {
-            return getLastItem(key).getValue();
-        } else {
-            return null;
+        int index = key.hashCode() % list.size();
+        for (int i = 0; i < list.get(index).size(); i++) {
+            if (list.get(index).get(i).getKey().equals(key)) {
+                return list.get(index).get(i).getValue();
+            }
         }
+        return null;
     }
 
 
     @Override
     public V remove(K key) {
-        if (getLastItem(key) != null) {
-            V value = get(key);
-            list.get(key.hashCode() % list.size()).remove(getLastItem(key));
-            realValues.remove(value);
-            return value;
+        int index = key.hashCode() % list.size();
+        for (int i = 0; i < list.get(index).size(); i++) {
+            if (list.get(index).get(i).getKey().equals(key)) {
+                Item<K, V> item = new Item<>();
+                item.setValue(list.get(index).get(i).getValue());
+                list.get(index).remove(list.get(index).get(i));
+                return item.getValue();
+            }
         }
         return null;
     }
@@ -68,33 +65,23 @@ public class MyHashMap<K, V> implements HashMapInterface<K, V> {
         return new CustomIterator<V>();
     }
 
-    private Item<K, V> getLastItem(K key) {
-        int index = key.hashCode() % list.size();
-        if (list.get(index) != null) {
-            if (list.get(index).size() != 0) {
-                return list.get(index).get(list.get(index).size() - 1);
-            }
-        }
-        return null;
-    }
+    private class CustomIterator<V> implements Iterator<V> {
+        private int currentIndexOfArray = 0, currentIndexOfItem = 0;
 
-    private class CustomIterator<V> implements Iterator<V>
-    {
-        int currentIndex = 0;
         @Override
         public boolean hasNext() {
-            if(currentIndex < realValues.size())
-                return true;
-            else
-            {
-                currentIndex = 0;
-                return false;
+            if (currentIndexOfItem == list.get(currentIndexOfArray).size()) {
+                currentIndexOfItem = 0;
+                do {
+                    currentIndexOfArray++;
+                } while (currentIndexOfArray < MapSize && list.get(currentIndexOfArray).size() == 0);
             }
+            return currentIndexOfArray < MapSize;
         }
 
         @Override
         public V next() {
-            return (V) realValues.get(currentIndex++);
+            return (V) list.get(currentIndexOfArray).get(currentIndexOfItem++).getValue();
         }
     }
 }
